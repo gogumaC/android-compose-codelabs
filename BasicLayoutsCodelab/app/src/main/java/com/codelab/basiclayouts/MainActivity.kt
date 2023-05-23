@@ -21,9 +21,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -33,7 +38,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -80,6 +89,27 @@ fun AlignYourBodyElement(
     modifier: Modifier = Modifier
 ) {
     // Implement composable here
+    Column(
+        modifier=modifier.padding(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally // 내용물의 정렬설정
+    ){
+        Image(
+            painter= painterResource(id = R.drawable.ab1_inversions), //이미지 리소스
+            contentDescription = null, //해당요소에 대한 설명
+            modifier=Modifier.size(88.dp) //요소의 사이즈 지정
+                .clip(CircleShape), //이미지를 원형으로 자르기
+            contentScale= ContentScale.Crop // 내용물을 자른 모양에 맞춰 스케일링
+        )
+        Text(
+            text= stringResource(id = R.string.ab1_inversions),
+            style=MaterialTheme.typography.labelMedium,// 글꼴 설정
+            modifier=Modifier.paddingFromBaseline(
+                top=24.dp,
+                bottom=8.dp
+            )//이 요소의 베이스라인인 글씨 아래선을 기준해서 위쪽으로 24dp, 아래쪽으로 8dp만큼 패딩 설정
+
+        )
+    }
 }
 
 // Step: Favorite collection card - Material Surface

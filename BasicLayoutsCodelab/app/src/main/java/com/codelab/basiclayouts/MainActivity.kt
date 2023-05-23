@@ -21,9 +21,20 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.codelab.basiclayouts.ui.theme.MySootheTheme
@@ -37,10 +48,30 @@ class MainActivity : ComponentActivity() {
 
 // Step: Search bar - Modifiers
 @Composable
-fun SearchBar(
+fun SearchBar( //검색 바 만들기
     modifier: Modifier = Modifier
 ) {
-    // Implement composable here
+    TextField(
+        //입력 가능한 텍스트 요소
+        value = "",//초기값 지정
+        onValueChange = {},//값 바뀔때 호출
+        leadingIcon = { //앞쪽 아이콘
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = null,
+            )
+        },
+        colors = androidx.compose.material3.TextFieldDefaults.colors(//m3요소에 m1요소 특성 넣으면 빨간줄됨
+            unfocusedContainerColor = MaterialTheme.colorScheme.surface
+        ),
+        placeholder = {
+            Text(stringResource(id = R.string.placeholder_search))
+        },
+        modifier = modifier
+            .fillMaxWidth() //상위요소의 전체 가로 공간 차지하도록 설정
+            .heightIn(min = 56.dp), //요소의 높이를 고정 높이가 아닌 최소높이로 지정하여 내용물에 따라 크기 변할 수 있도록 설정(권장)
+
+    )
 }
 
 // Step: Align your body - Alignment

@@ -91,6 +91,8 @@ fun SearchBar( //검색 바 만들기
 // Step: Align your body - Alignment
 @Composable
 fun AlignYourBodyElement(
+    @DrawableRes drawable: Int,
+    @StringRes text:Int,
     modifier: Modifier = Modifier
 ) {
     // Implement composable here
@@ -99,7 +101,7 @@ fun AlignYourBodyElement(
         horizontalAlignment = Alignment.CenterHorizontally // 내용물의 정렬설정
     ){
         Image(
-            painter= painterResource(id = R.drawable.ab1_inversions), //이미지 리소스
+            painter= painterResource(id = drawable), //이미지 리소스
             contentDescription = null, //해당요소에 대한 설명
             modifier= Modifier
                 .size(88.dp) //요소의 사이즈 지정
@@ -107,7 +109,7 @@ fun AlignYourBodyElement(
             contentScale= ContentScale.Crop // 내용물을 자른 모양에 맞춰 스케일링
         )
         Text(
-            text= stringResource(id = R.string.ab1_inversions),
+            text= stringResource(id = text),
             style=MaterialTheme.typography.labelMedium,// 글꼴 설정
             modifier=Modifier.paddingFromBaseline(
                 top=24.dp,
@@ -228,6 +230,8 @@ fun SearchBarPreview() {
 fun AlignYourBodyElementPreview() {
     MySootheTheme {
         AlignYourBodyElement(
+            drawable=R.drawable.ab1_inversions,
+            text=R.string.ab1_inversions,
             modifier = Modifier.padding(8.dp)
         )
     }

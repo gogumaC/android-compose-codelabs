@@ -23,17 +23,22 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldColors
@@ -96,7 +101,8 @@ fun AlignYourBodyElement(
         Image(
             painter= painterResource(id = R.drawable.ab1_inversions), //이미지 리소스
             contentDescription = null, //해당요소에 대한 설명
-            modifier=Modifier.size(88.dp) //요소의 사이즈 지정
+            modifier= Modifier
+                .size(88.dp) //요소의 사이즈 지정
                 .clip(CircleShape), //이미지를 원형으로 자르기
             contentScale= ContentScale.Crop // 내용물을 자른 모양에 맞춰 스케일링
         )
@@ -115,9 +121,35 @@ fun AlignYourBodyElement(
 // Step: Favorite collection card - Material Surface
 @Composable
 fun FavoriteCollectionCard(
+    @DrawableRes drawable:Int,
+    @StringRes text:Int,
     modifier: Modifier = Modifier
 ) {
-    // Implement composable here
+    Surface(//내용물과 통째로 잘린 모서리를 표현하기 위해 Surface요소사용
+        //modifier=modifier.clip(RoundedCornerShape(3.dp)) //둥근 모서리 적용
+        shape=MaterialTheme.shapes.small, //m3에 정의된 둥근 모서리 적용
+        modifier = modifier
+    ){
+        Row(
+            verticalAlignment = Alignment.CenterVertically, //내용물을 정렬
+            modifier=Modifier.width(192.dp)//너비 지정
+        ){
+            Image(
+                painter = painterResource(drawable),
+                contentDescription =null,
+                modifier=Modifier.size(56.dp),
+                contentScale = ContentScale.Crop
+            )
+            Text(
+                text= stringResource(text),
+                style=MaterialTheme.typography.labelMedium,
+                modifier=Modifier.padding(horizontal=16.dp),
+
+
+            )
+
+        }
+    }
 }
 
 // Step: Align your body row - Arrangements
@@ -206,6 +238,8 @@ fun AlignYourBodyElementPreview() {
 fun FavoriteCollectionCardPreview() {
     MySootheTheme {
         FavoriteCollectionCard(
+            R.drawable.fc2_nature_meditations,
+            R.string.fc2_nature_meditations,
             modifier = Modifier.padding(8.dp)
         )
     }

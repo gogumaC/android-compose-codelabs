@@ -22,7 +22,9 @@ import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -30,6 +32,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.TextFieldDefaults
@@ -52,6 +56,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.codelab.basiclayouts.ui.theme.MySootheTheme
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,7 +103,7 @@ fun AlignYourBodyElement(
 ) {
     // Implement composable here
     Column(
-        modifier=modifier.padding(8.dp),
+       // modifier=modifier.padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally // 내용물의 정렬설정
     ){
         Image(
@@ -159,7 +165,16 @@ fun FavoriteCollectionCard(
 fun AlignYourBodyRow(
     modifier: Modifier = Modifier
 ) {
-    // Implement composable here
+    //import androidx.compose.foundation.lazy.items 이것 필요
+    LazyRow(
+        modifier=Modifier, //패딩으로 양옆 간격 벌릴시 스크롤이 잘림
+        contentPadding= PaddingValues(horizontal = 16.dp), // 컨텐츠가 잘리지 않게 패딩추가
+        horizontalArrangement = Arrangement.spacedBy(8.dp), //각 아이템 사이의 간격 설정
+    ){
+        items(alignYourBodyData) {item ->
+            AlignYourBodyElement(drawable = item.drawable, text = item.text)
+        }
+    }
 }
 
 // Step: Favorite collections grid - LazyGrid

@@ -43,9 +43,14 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Spa
+import androidx.compose.material.icons.materialIcon
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Shapes
@@ -234,7 +239,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
     Column(
         modifier
             .verticalScroll(rememberScrollState()) //스크롤 기능 추가
-            .padding(vertical=16.dp)
+            .padding(vertical = 16.dp)
     ){
        // Spacer(modifier =Modifier.height(16.dp)) // 빈공간 생성
         SearchBar(modifier=Modifier.padding(horizontal=16.dp))
@@ -251,7 +256,37 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 // Step: Bottom navigation - Material
 @Composable
 private fun SootheBottomNavigation(modifier: Modifier = Modifier) {
-    // Implement composable here
+    BottomNavigation(
+        modifier,
+        backgroundColor = MaterialTheme.colorScheme.background//배경색 설정
+    ) {
+        BottomNavigationItem(
+            icon = { // 해당 버튼의 아이콘
+                Icon(
+                    imageVector = Icons.Default.Spa,
+                    contentDescription = null
+                )
+            },
+            label={ //해당 버튼의 텍스트
+                Text(stringResource(id = R.string.bottom_navigation_home))
+            },
+            selected = true, //눌러진 상태로 설정할건지
+            onClick = {}
+        )
+        BottomNavigationItem(
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.AccountCircle,
+                    contentDescription = null
+                )
+            },
+            label={
+                Text(stringResource(id = R.string.bottom_navigation_profile))
+            },
+            selected = false,
+            onClick = {}
+        )
+    }
 }
 
 // Step: MySoothe App - Scaffold

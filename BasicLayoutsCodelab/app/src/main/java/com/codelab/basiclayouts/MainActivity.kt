@@ -27,13 +27,17 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.TextFieldDefaults
@@ -182,7 +186,23 @@ fun AlignYourBodyRow(
 fun FavoriteCollectionsGrid(
     modifier: Modifier = Modifier
 ) {
-    // Implement composable here
+    LazyHorizontalGrid(
+        modifier=Modifier.height(120.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement=Arrangement.spacedBy(8.dp),
+        contentPadding= PaddingValues(horizontal=16.dp),
+        rows = GridCells.Fixed(2) //열 개수 지정
+    ){
+        //androidx.compose.foundation.lazy.graid.items 임포트 필요
+        items(favoriteCollectionsData) {item->
+            FavoriteCollectionCard(
+                drawable = item.drawable,
+                text = item.text,
+                modifier=Modifier.height(56.dp)
+            )
+        }
+    }
+
 }
 
 // Step: Home section - Slot APIs

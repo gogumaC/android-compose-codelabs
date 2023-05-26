@@ -53,6 +53,7 @@ import androidx.compose.material.icons.filled.Spa
 import androidx.compose.material.icons.materialIcon
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Shapes
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -292,7 +293,11 @@ private fun SootheBottomNavigation(modifier: Modifier = Modifier) {
 // Step: MySoothe App - Scaffold
 @Composable
 fun MySootheApp() {
-    // Implement composable here
+    Scaffold( //Scaffold는 앱 구조를 나누어둔 틀같은것!
+        bottomBar={ SootheBottomNavigation() } // 하단 바 설정
+    ) { padding->
+        HomeScreen(Modifier.padding(padding)) // 메인 화면
+    }
 }
 
 private val alignYourBodyData = listOf(

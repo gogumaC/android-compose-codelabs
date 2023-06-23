@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 
 //Stateful composable
@@ -24,7 +25,7 @@ fun WellnessTaskItem(
     taskName: String,
     modifier: Modifier=Modifier
 ){
-    var checkState by remember{ mutableStateOf(false) }
+    var checkState by rememberSaveable{ mutableStateOf(false) }
     WellnessTaskItem(
         taskName = taskName,
         checked = checkState,

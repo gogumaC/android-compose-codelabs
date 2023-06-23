@@ -23,14 +23,15 @@ import androidx.compose.runtime.setValue
 @Composable
 fun WellnessTaskItem(
     taskName: String,
-    modifier: Modifier=Modifier
+    modifier: Modifier=Modifier,
+    onClose: () -> Unit
 ){
     var checkState by rememberSaveable{ mutableStateOf(false) }
     WellnessTaskItem(
         taskName = taskName,
         checked = checkState,
         onCheckedChange = {checkState=it},
-        onClose = { /*TODO*/ },
+        onClose = onClose,
         modifier=modifier
     )
 }

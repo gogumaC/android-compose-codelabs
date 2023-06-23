@@ -19,22 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 
-//Stateful composable
-@Composable
-fun WellnessTaskItem(
-    taskName: String,
-    modifier: Modifier=Modifier,
-    onClose: () -> Unit
-){
-    var checkState by rememberSaveable{ mutableStateOf(false) }
-    WellnessTaskItem(
-        taskName = taskName,
-        checked = checkState,
-        onCheckedChange = {checkState=it},
-        onClose = onClose,
-        modifier=modifier
-    )
-}
+
 
 //Stateless composable
 @Composable
